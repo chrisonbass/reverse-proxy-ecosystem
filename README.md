@@ -17,14 +17,16 @@ Run the following commands to restart a Node App in an already running container
 docker exec -it app-one /bin/sh
 ```
 
+This should get you inside the container.  Once you're there run the following
+```
+cd /app
+npm start
+```
+
 If you get an error that a container by the name of `app-on` doesn't exist, run this command to list all the containers.
 ```
 docker ps -a
 ```
 This command lists all the containers, it may have a weird name like `reverse-proxy_app-one`
 
-This should get you inside the container.  Once you're there run the following
-```
-cd /app
-npm start
-```
+
