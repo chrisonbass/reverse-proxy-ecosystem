@@ -1,0 +1,4 @@
+app1/src/node_modules
+app1/src/package-lock.json
+app2/src/node_modules
+app2/src/package-lock.json

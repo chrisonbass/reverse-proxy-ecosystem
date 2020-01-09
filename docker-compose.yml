@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    #command: tail -F anything
+    depends_on:
+      - app1
+      - app2
+
+  app1:
+    build: ./app1
+    container_name: app-one
+    volumes:
+    - ./app1/src:/app
+
+  app2:
+    build: ./app2
+    container_name: app-two
+    volumes:
+    - ./app2/src:/app
