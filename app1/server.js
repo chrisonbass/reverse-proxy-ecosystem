@@ -1,5 +1,4 @@
 var express = require('express');
-
 var app = express();
 
 app.use(express.static('public'))
@@ -10,4 +9,3 @@ app.listen( serverPort, () => {
       ln  = `==============================================`;
   console.log("\n" + ln + "\n" + str + "\n" + ln);
 } );
-

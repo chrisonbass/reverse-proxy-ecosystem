@@ -1,6 +1,11 @@
 version: '3.7'
 
 services:
+  # Proxy app that proxy_passes app1.vm to 
+  # the app1 service, and app2.vm to the app2
+  # service.  It will also forward /socket.io 
+  # requests on either domain to the messenger 
+  # service
   nginx:
     image: nginx:alpine
     container_name: nginx-proxy
@@ -10,19 +15,51 @@ services:
     ports:
       - 80:80
       - 443:443
-    #command: tail -F anything
     depends_on:
       - app1
       - app2
+      - messenger
 
+  # Simple Express App
+  # Sends websocket messages
   app1:
-    build: ./app1
+    image: node:10-alpine
     container_name: app-one
+    # Set working directory that the
+    # command below will run
+    working_dir: /home/node/app
+    command: "npm start"
+    expose: 
+    - "80"
     volumes:
-    - ./app1/src:/app
+    - ./app1:/home/node/app
 
+  # Simple Express App
+  # Outputs websocket messages 
+  # received from App1
   app2:
-    build: ./app2
+    image: node:10-alpine
     container_name: app-two
+    # Set working directory that the
+    # command below will run
+    working_dir: /home/node/app
+    command: "npm start"
+    expose: 
+    - "80"
     volumes:
-    - ./app2/src:/app
+    - ./app2:/home/node/app
+
+  # NodeJs WebSockets Socket.io app
+  # Handles websocket connections for
+  # mutliple domains
+  messenger:
+    image: node:10-alpine
+    container_name: app-messenger
+    # Set working directory that the
+    # command below will run
+    working_dir: /home/node/app
+    command: "npm start"
+    expose: 
+    - "80"
+    volumes:
+    - ./messenger:/home/node/app

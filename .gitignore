@@ -1,4 +1,6 @@
-app1/src/node_modules
-app1/src/package-lock.json
-app2/src/node_modules
-app2/src/package-lock.json
+app1/node_modules
+app1/package-lock.json
+app2/node_modules
+app2/package-lock.json
+messenger/node_modules
+messenger/package-lock.json
