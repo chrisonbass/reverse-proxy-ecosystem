@@ -29,8 +29,6 @@ services:
     # command below will run
     working_dir: /home/node/app
     command: "npm start"
-    expose: 
-    - "80"
     volumes:
     - ./app1:/home/node/app
 
@@ -44,8 +42,6 @@ services:
     # command below will run
     working_dir: /home/node/app
     command: "npm start"
-    expose: 
-    - "80"
     volumes:
     - ./app2:/home/node/app
 
@@ -59,7 +55,5 @@ services:
     # command below will run
     working_dir: /home/node/app
     command: "npm start"
-    expose: 
-    - "80"
     volumes:
     - ./messenger:/home/node/app
